@@ -20,4 +20,4 @@ ssh-add "$SSH_PATH/deploy_key"
 
 
 # Do the deployment
-sh -c "rsync $INPUT_FLAGS -e 'ssh -i $SSH_PATH/deploy_key -o StrictHostKeyChecking=no' $INPUT_OPTIONS $GITHUB_WORKSPACE/${INPUT_LOCALPATH#/} $INPUT_USER@$INPUT_HOST:$INPUT_REMOTE_PATH"
+sh -c "rsync $INPUT_FLAGS -e 'ssh -i $SSH_PATH/deploy_key -o StrictHostKeyChecking=no' $INPUT_OPTIONS $GITHUB_WORKSPACE/${INPUT_LOCAL_PATH#/} $INPUT_USER@$INPUT_HOST:$INPUT_REMOTE_PATH"
