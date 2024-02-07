@@ -1,0 +1,37 @@
+name: 'Secure Rsync Deploy'
+description: 'Securely deploy code to a webserver via rsync over ssh'
+author: 'Micah Wood'
+branding:
+  icon: 'upload-cloud'  
+  color: 'red'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  deploy_key:
+    description: 'SSH private deploy key'
+    required: true
+  flags:
+    description: 'Rsync flags'
+    required: true
+    default: '-archive --checksum --compress --delete-after --force --recursive -verbose'
+  options:
+    description: 'Rsync options'
+    required: true
+    default: '--include-from=.distinclude --exclude-from=.distignore --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r'
+  local_path:
+    description: 'Local folder to be synced, relative to the GitHub workspace.'
+    required: true
+    default: '/dist/'
+  user: 
+    description: 'Remote user name (e.g. root or deploy)'
+    required: true
+  host:
+    description: 'Remote host name or IP address (e.g. example.com or 101.186.66.124)'
+    required: true
+  remote_path:
+    description: 'Remote path (e.g. /var/www/html/)'
+    required: true
+outputs:
+  status:
+    description: 'Status of the command'
