@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: wp-forge/secure-rsync-deploy@v1
+      - uses: wp-forge/secure-rsync-deploy@1.0.0
         with:
           USER: ${{ vars.SERVER_USER }}
           HOST: ${{ vars.SERVER_HOST }}
@@ -49,6 +49,7 @@ jobs:
 ### Advanced Example
 
 This example includes all optional values and uses variables and secrets to customize the required options. All changes are deployed whenever a new release is published on GitHub.
+
 
 ```yml
 name: Deploy to production
@@ -63,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: wp-forge/secure-rsync-deploy@v1
+      - uses: wp-forge/secure-rsync-deploy@1.0.0
         with:
           FLAGS: -aczrv --delete
           OPTIONS: --exclude=/.* --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r
