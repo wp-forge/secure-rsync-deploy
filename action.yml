@@ -8,30 +8,27 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
 inputs:
-  deploy_key:
-    description: 'SSH private deploy key'
+  DEPLOY_KEY:
+    description: 'SSH private key'
     required: true
-  flags:
+  FLAGS:
     description: 'Rsync flags'
     required: true
-    default: '-archive --checksum --compress --delete-after --force --recursive -verbose'
-  options:
+    default: '--archive --checksum --compress --delete-after --force --recursive --verbose'
+  HOST:
+    description: 'Remote host name or IP address (e.g. example.com or 101.186.66.124)'
+    required: true
+  LOCAL_PATH:
+    description: 'Local folder to be synced, relative to the GitHub workspace.'
+    required: true
+    default: ''
+  OPTIONS:
     description: 'Rsync options'
     required: true
     default: '--include-from=.distinclude --exclude-from=.distignore --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r'
-  local_path:
-    description: 'Local folder to be synced, relative to the GitHub workspace.'
-    required: true
-    default: '/dist/'
-  user: 
-    description: 'Remote user name (e.g. root or deploy)'
-    required: true
-  host:
-    description: 'Remote host name or IP address (e.g. example.com or 101.186.66.124)'
-    required: true
-  remote_path:
+  REMOTE_PATH:
     description: 'Remote path (e.g. /var/www/html/)'
     required: true
-outputs:
-  status:
-    description: 'Status of the command'
+  USER: 
+    description: 'Remote user name (e.g. root or deploy)'
+    required: true
